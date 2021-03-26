@@ -5,6 +5,9 @@ This is demo for emBO++ 2021 talk "QEmu in-the-loop development" by Maciej Nowak
 * Structure application into two runner (HW and QEmu)
 * Use EDI to interact with external simulators
 
+In addition there are unit tests example included based on QEmu and GoogleTest. Due to GoogleTest dependencies on
+functionality not available in newlib, forked version is used.
+
 # Build
 
 1. Copy `local-example.cmake` as `.local/local.cmake`
@@ -26,5 +29,10 @@ This is demo for emBO++ 2021 talk "QEmu in-the-loop development" by Maciej Nowak
 2. Install requirements `<build>/venv/Scripts/pip install -r requirements.txt`
 3. Start listener `<build>/venv/Scripts/python <src>/host/listener.py`
 4. Start
-   QEMU: `qemu-system-arm -machine virt_cortex_m -semihosting -semihosting-config enable=on,target=native -monitor null -kernel <build>\app\qemu_runner\app_qemu.elf -device kp-edi-group`
+   QEMU: `qemu-system-arm -machine virt_cortex_m -semihosting -semihosting-config enable=on,target=native -monitor null -kernel <build>/app/qemu_runner/app_qemu.elf -device kp-edi-group`
 5. Listener will receive logs from firmware and simulate button press every few seconds
+
+# Unit tests
+
+1. Build `unit_tests` target
+2. Run QEMU: `qemu-system-arm -machine virt_cortex_m -semihosting -kernel <build>/unit_tests/unit_tests.elf`

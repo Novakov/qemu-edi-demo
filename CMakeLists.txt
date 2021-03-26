@@ -19,3 +19,4 @@ set(CMAKE_CONFIGURATION_TYPES Debug;Release)
 
 add_subdirectory(app)
 add_subdirectory(libs)
+add_subdirectory(unit_tests)
